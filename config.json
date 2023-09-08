@@ -1,8 +1,9 @@
 {
     "excel_file_path": "Donor.xlsx",
     
-        "mappings": {
+        "filler": {"ID No": "Na"},
 
+        "mappings": {
         "Name of Fund":{
             "The Eurasian Association General Fund": 1
         },
