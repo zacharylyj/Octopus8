@@ -1,0 +1,37 @@
+{
+    "excel_file_path": "Donor.xlsx",
+    
+        "mappings": {
+
+        "Name of Fund":{
+            "The Eurasian Association General Fund": 1
+        },
+
+        "Project":{
+            "FSS": 1,
+            "E-Racing": 2,
+            "NYE D&D 2022": 3,
+            "EDN": 4,
+            "Giving.SG - FSS": 5,
+            "General Donation": 6,
+            "General donation": 6,
+            "Others": 7
+        },
+        "Date of Donation":{},
+        "Type of Payment": {
+            "Credit Card": 1,
+            "Debit Card": 2,
+            "Cash": 3,
+            "Cheque": 4,
+            "EFT": 5,
+            "PayNow": 6,
+            "Bank Transfer": 7,
+            "GIRO": 8
+        },
+        
+        "TD": {
+            "Non-Tax Deductible Donation": 0,
+            "Tax Deductible Donation": 1
+        }
+    }
+}
