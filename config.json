@@ -1,6 +1,6 @@
 {
-    "excel_file_path": "Donor.xlsx",
-    
+    "excel_file_path": "IPC.xlsx",
+
         "filler": {"ID No": "Na"},
 
         "mappings": {

@@ -1,12 +1,29 @@
-# Zachary Leong Octopus8 Mapper 5/9/2023
 import pandas as pd
 import json
 import random
+import msoffcrypto
+
+
+def decrypt_excel(file_path, password, decrypted_file_path):
+    with open(file_path, "rb") as f:
+        office_file = msoffcrypto.OfficeFile(f)
+        office_file.load_key(password=password)
+        with open(decrypted_file_path, "wb") as df:
+            office_file.decrypt(df)
 
 
 def apply_mappings(data_file_path, mappings):
-    # Read the Excel sheet into a DataFrame
-    df = pd.read_excel(data_file_path, engine='openpyxl')
+    # Prompt for password
+    password = input(
+        "Enter the password for the Excel file (or press Enter if the file is not password-protected): ")
+
+    # Decrypt file if password is provided
+    decrypted_file_path = "decrypted_" + data_file_path
+    if password:
+        decrypt_excel(data_file_path, password, decrypted_file_path)
+        df = pd.read_excel(decrypted_file_path, engine='openpyxl')
+    else:
+        df = pd.read_excel(data_file_path, engine='openpyxl')
 
     # Apply the mappings and create new columns
     for col_name, mapping in mappings.items():
@@ -16,7 +33,7 @@ def apply_mappings(data_file_path, mappings):
 
     map_data_file_path = f"mapped_{data_file_path}"
 
-    # Save the updated DataFrame back to the Excel file
+    # Save the updated DataFrame back to Excel
     df.to_excel(map_data_file_path, index=False, engine='openpyxl')
 
 
