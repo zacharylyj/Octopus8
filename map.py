@@ -1,6 +1,6 @@
 import pandas as pd
 import json
-import random
+import os
 import msoffcrypto
 
 
@@ -22,6 +22,7 @@ def apply_mappings(data_file_path, mappings):
     if password:
         decrypt_excel(data_file_path, password, decrypted_file_path)
         df = pd.read_excel(decrypted_file_path, engine='openpyxl')
+        os.remove(decrypted_file_path)  # Delete the decrypted file
     else:
         df = pd.read_excel(data_file_path, engine='openpyxl')
 
@@ -45,14 +46,6 @@ if __name__ == "__main__":
     # Extract values from the configuration
     excel_file_path = config["excel_file_path"]
     mappings = config["mappings"]
-
-    # Useless Loading for fun :)
-    print(f"Applying Map")
-    loading = 0
-    while loading < 100:
-        print(f"{loading}%")
-        loading += random.randint(0, 10)
-    print(f"100%")
 
     # Call the function to apply the mappings and update the Excel file
     apply_mappings(excel_file_path, mappings)
